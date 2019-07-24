@@ -27,3 +27,11 @@ class PaperItem(scrapy.Item):
     category = scrapy.Field()
     subject = scrapy.Field()
     date_line = scrapy.Field()
+    
+    
+class ACMProceeding(scrapy.Item):
+    name = scrapy.Field()
+    href = scrapy.Field()
+    citation_id = scrapy.Field()
+    title = scrapy.Field()
+    category = scrapy.Field()

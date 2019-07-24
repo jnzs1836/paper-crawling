@@ -5,7 +5,7 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import pymongo
-from papercollecting.items import PaperItem
+from papercollecting.items import *
 class PapercollectingPipeline(object):
     def process_item(self, item, spider):
         return item
@@ -15,7 +15,7 @@ class MongoDBPipeline(object):
 
     collection_name = 'articles'
 
-    def __init__(self, mongodb_host = '127.0.0.1', mongodb_db = 'arxiv'):
+    def __init__(self, mongodb_host = '127.0.0.1', mongodb_db = 'papers'):
         self.mongo_uri = mongodb_host
         self.mongo_db = mongodb_db
 
@@ -44,3 +44,5 @@ class MongoDBPipeline(object):
                 categories.extend(tmp)
                 item['category'] = categories
             self.db['papers'].update({'arxiv_id': item['arxiv_id']},  dict(item), True)
+        elif isinstance(item, ACMProceeding):
+            self.db['acm_proceedings'].insert_one(dict(item))
