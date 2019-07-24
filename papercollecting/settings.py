@@ -50,6 +50,10 @@ ROBOTSTXT_OBEY = True
 #    'papercollecting.middlewares.PapercollectingSpiderMiddleware': 543,
 #}
 
+ITEM_PIPELINES = {
+   'papercollecting.pipelines.MongoDBPipeline': 300,
+}
+
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
@@ -88,3 +92,6 @@ ROBOTSTXT_OBEY = True
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+MONGO_URI = 'localhost'
+MONGO_DATABASE = 'arxiv'
+
